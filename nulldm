@@ -1,0 +1,30 @@
+#!/bin/sh
+
+#
+# Poor man's display manager
+#
+
+SESSION=/usr/bin/nulldm-runx
+
+DISPLAY=:0
+SERVER=/usr/bin/Xfbdev
+SERVER_ARGS=
+
+if [ -f /etc/default/nulldm ]; then
+    . /etc/default/nulldm
+fi
+
+PIDFILE=/var/run/nulldm.pid
+echo $$ > $PIDFILE
+
+# FIXME
+trap_exit() {
+    RETVAL=$?
+    killall xinit
+    exit $RETVAL
+}
+trap trap_exit HUP PIPE INT QUIT TERM
+
+while :; do
+    xinit $SESSION -- $SERVER $DISPLAY $SERVER_ARGS
+done

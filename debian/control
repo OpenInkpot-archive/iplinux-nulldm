@@ -1,0 +1,15 @@
+Source: nulldm
+Section: gui
+Priority: optional
+Maintainer: Mikhail Gusarov <dottedmag@dottedmag.net>
+XCS-Cross-Host-Build-Depends: debhelper (>= 7)
+XCS-Cross-Build-Depends:
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.0
+
+Package: nulldm
+Architecture: all
+Depends: ${misc:Depends}, xinit, x11-common
+Description: trivial X display manager
+ nulldm is a trivial display manager which restarts the default X session when
+ it exits.

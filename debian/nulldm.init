@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+start() {
+    echo -n "Starting nulldm: "
+    start-stop-daemon -S -b -p /var/run/nulldm.pid --exec /usr/bin/nulldm
+    echo ok.
+}
+
+stop() {
+    echo -n "Stopping nulldm: "
+    if start-stop-daemon -K -p /var/run/nulldm.pid; then
+        echo ok.
+    else
+        echo already stopped.
+    fi
+}
+
+case "$1" in
+    start) start;;
+    stop) stop;;
+    force-reload)
+        stop
+        start;;
+    *)
+        echo "Usage: /etc/init.d/nulldm {start|stop|force-reload}" >&2;;
+esac
+exit 0

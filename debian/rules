@@ -1,0 +1,47 @@
+#!/usr/bin/make -f
+
+DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	confflags += --build=$(DEB_HOST_GNU_TYPE)
+else
+	confflags += --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
+endif
+
+confflags += --without-xauth
+
+build:
+
+clean:
+	dh_testdir
+	dh_testroot
+	dh_clean
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+
+	mkdir -p $(CURDIR)/debian/tmp/usr/bin
+	cp nulldm $(CURDIR)/debian/tmp/usr/bin
+	cp nulldm-runx $(CURDIR)/debian/tmp/usr/bin
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+
+	dh_install --sourcedir=debian/tmp --list-missing
+	dh_installinit -- start 95 2 . stop 95 0 6 .
+	dh_link
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-indep: build install
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
