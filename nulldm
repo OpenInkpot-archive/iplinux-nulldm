@@ -17,7 +17,11 @@ fi
 PIDFILE=/var/run/nulldm.pid
 echo $$ > $PIDFILE
 
-# FIXME
+# Setup user's environment
+HOME=$(getent passwd | cut -d: -f6)
+export HOME
+
+# FIXME: kill xinit in more intelligent way
 trap_exit() {
     RETVAL=$?
     killall xinit
