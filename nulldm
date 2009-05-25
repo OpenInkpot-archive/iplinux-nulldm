@@ -18,7 +18,7 @@ PIDFILE=/var/run/nulldm.pid
 echo $$ > $PIDFILE
 
 # Setup user's environment
-HOME=$(getent passwd | cut -d: -f6)
+HOME=$(getent passwd $USER | cut -d: -f6)
 export HOME
 
 # FIXME: kill xinit in more intelligent way
