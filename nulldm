@@ -4,7 +4,7 @@
 # Poor man's display manager
 #
 
-SESSION=/usr/bin/nulldm-runx
+SESSION=/etc/X11/Xsession
 
 DISPLAY=:0
 SERVER=/usr/bin/Xfbdev

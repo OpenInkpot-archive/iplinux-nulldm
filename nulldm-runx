@@ -1,5 +1,0 @@
-#!/bin/sh -e
-
-while :; do
-    /etc/X11/Xsession "$@"
-done
