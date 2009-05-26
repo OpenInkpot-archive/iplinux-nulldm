@@ -1,3 +1,10 @@
+nulldm (0.1-4) asimov; urgency=low
+
+  * nulldm-runx removed. It's too hard to restart session without shuttind
+    down the server.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Tue, 26 May 2009 20:47:11 +0700
+
 nulldm (0.1-3) asimov; urgency=low
 
   * Fixed getting $HOME if there are several users on device.
