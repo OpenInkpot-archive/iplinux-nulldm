@@ -26,7 +26,6 @@ install:
 
 	mkdir -p $(CURDIR)/debian/tmp/usr/bin
 	cp nulldm $(CURDIR)/debian/tmp/usr/bin
-	cp nulldm-runx $(CURDIR)/debian/tmp/usr/bin
 
 binary-arch: build install
 	dh_testdir
