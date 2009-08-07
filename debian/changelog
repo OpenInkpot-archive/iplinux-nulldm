@@ -1,3 +1,11 @@
+nulldm (0.1-5) asimov; urgency=low
+
+  * Fix signals handling for SUSv3 compliant shells (such as newer Busybox
+    ash).
+  * Get rid of 'killall xinit' kludge on shutdown.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sat, 08 Aug 2009 04:39:39 +0700
+
 nulldm (0.1-4) asimov; urgency=low
 
   * nulldm-runx removed. It's too hard to restart session without shuttind
