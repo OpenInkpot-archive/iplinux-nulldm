@@ -30,5 +30,6 @@ trap_exit() {
 trap trap_exit HUP PIPE INT QUIT TERM
 
 while :; do
-    xinit $SESSION -- $SERVER $DISPLAY $SERVER_ARGS
+    xinit $SESSION -- $SERVER $DISPLAY $SERVER_ARGS&
+    wait
 done
